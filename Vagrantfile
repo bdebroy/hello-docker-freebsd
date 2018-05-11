@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.base_mac = "080027D14C66"
 
   config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "4096"]
     vb.customize ["modifyvm", :id, "--cpus", "2"]
     vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
     vb.customize ["modifyvm", :id, "--audio", "none"]
