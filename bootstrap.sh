@@ -7,8 +7,9 @@ rm -r /usr/ports/lang/go/ && \
 mv /usr/ports/go /usr/ports/lang/go && \
 cd /usr/ports/lang/go && make install clean BATCH=yes && \
 pkg lock -y go
-pkg install -y docker-freebsd && \
-    dd if=/dev/zero of=/usr/local/dockerfs bs=1024K count=3000 && \
+pkg install -y bash gettext-runtime && \
+    cd /usr/ports/sysutils/docker-freebsd/ && make install clean BATCH=yes && \
+    dd if=/dev/zero of=/usr/local/dockerfs bs=1024K count=4000 && \
     zpool create -f zroot /usr/local/dockerfs && \
     zfs create -o mountpoint=/usr/docker zroot/docker && \
     sysrc -f /etc/rc.conf docker_enable="YES" && \
