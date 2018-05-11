@@ -1,6 +1,11 @@
 #!/bin/sh
-sudo pkg update && \
-    sudo pkg install -y docker-freebsd ca_root_nss && \
-    sudo echo "docker_enable=\"YES\"" >> /etc/rc.conf && \
+portsnap auto && \
+pkg install -y ca_root_nss bash gettext-runtime sqlite3 && \
+    cd /usr/ports/sysutils/docker-freebsd/ && make install clean BATCH=yes && \
+    dd if=/dev/zero of=/usr/local/dockerfs bs=1024K count=4000 && \
+    zpool create -f zroot /usr/local/dockerfs && \
     zfs create -o mountpoint=/usr/docker zroot/docker && \
+    sysrc -f /etc/rc.conf docker_enable="YES" && \
+    pw groupadd docker && \
+    pw groupmod docker -M $USER && \
     service docker start
