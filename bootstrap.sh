@@ -1,7 +1,7 @@
 #!/bin/sh
 portsnap auto && \
 pkg install -y portdowngrade && \
-portdowngrade lang/go r441745
+portdowngrade lang/go r441745  && \
 rm -r /usr/ports/lang/go/ && \
 mv /usr/ports/go /usr/ports/lang/go && \
 pkg install -y ca_root_nss bash gettext-runtime sqlite3 && \
