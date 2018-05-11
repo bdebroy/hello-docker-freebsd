@@ -1,5 +1,5 @@
 #!/bin/sh
-#portsnap auto && \
+portsnap auto && \
 echo "vfs.zfs.prefetch_disable=0" >> /boot/loader.conf && \
 pkg install -y ca_root_nss portdowngrade && \
 cd /usr/ports/ && portdowngrade lang/go r441745  && \

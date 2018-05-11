@@ -3,6 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "freebsd/FreeBSD-11.1-RELEASE"
   config.vm.box_version = "2017.07.21"
   config.vm.synced_folder ".", "/vagrant", type: "rsync"
+  config.vm.provision "shell", path: "bootstrap.sh"
   config.vm.provision "file", source: "bootstrap.sh", destination: "bootstrap.sh"
   config.ssh.shell = "sh"
   config.vm.base_mac = "080027D14C66"
