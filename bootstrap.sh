@@ -13,6 +13,8 @@ zfs create -o mountpoint=/usr/docker zroot/docker && \
 sysrc -f /etc/rc.conf docker_enable="YES" && \
 pw groupadd docker && \
 pw groupmod docker -M $USER && \
-pw groupmod operator -m $USER && \    
+pw groupmod operator -m $USER && \  
+pw groupmod docker -m vagrant && \  
+pw groupmod operator -m vagrant && \
 pkg lock -y go && \    
 service docker start
